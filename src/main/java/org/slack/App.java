@@ -16,7 +16,7 @@ public class App {
             System.exit(1);
         }
         String token = args[0];
-        List<String> scopes = List.of(args).subList(1, args.length - 1);
+        List<String> scopes = List.of(args).subList(1, args.length);
         Map<String, Boolean> validatedScopes;
         SlackApiClient slackApiClient = new SlackApiClient();
         TokenValidator tokenValidator = new SlackTokenValidator();
