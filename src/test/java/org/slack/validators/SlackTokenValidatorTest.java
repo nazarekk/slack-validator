@@ -55,7 +55,7 @@ public class SlackTokenValidatorTest
     @Test
     @DisplayName("Should return empty map for valid token with no scopes")
     void whenValidTokenAndEmptyScopesAreProvided_thenShouldReturnEmptyMap() {
-        Map<String, Boolean> validationResult = validator.bulkValidate(authResponse, Collections.EMPTY_LIST);
+        Map<String, Boolean> validationResult = validator.bulkValidate(authResponse, Collections.emptyList());
         Assertions.assertEquals(0, validationResult.size());
     }
 }
