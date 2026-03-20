@@ -10,7 +10,7 @@ public abstract class TokenValidator {
     public Map<String, Boolean> bulkValidate(Object authResponse, List<String> scopes) {
         Map<String, Boolean> validatedScopes = new HashMap<>();
         for (String scope : scopes) {
-            Boolean validationResult = this.validate(authResponse, scope);
+            Boolean validationResult = validate(authResponse, scope);
             validatedScopes.put(scope,validationResult);
         }
         return validatedScopes;
