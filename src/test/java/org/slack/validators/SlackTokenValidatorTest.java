@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 
 
@@ -49,5 +50,12 @@ public class SlackTokenValidatorTest
         Assertions.assertTrue(validationResult.get("channels:read"));
         Assertions.assertTrue(validationResult.get("channels:history"));
         Assertions.assertFalse(validationResult.get("groups:read"));
+    }
+
+    @Test
+    @DisplayName("Should return empty map for valid token with no scopes")
+    void whenValidTokenAndEmptyScopesAreProvided_thenShouldReturnEmptyMap() {
+        Map<String, Boolean> validationResult = validator.bulkValidate(authResponse, Collections.EMPTY_LIST);
+        Assertions.assertEquals(0, validationResult.size());
     }
 }
