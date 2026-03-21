@@ -1,8 +1,18 @@
 package org.slack;
 
-public final class ValidationConstants {
-    public static final String SUCCESS_MESSAGE = "SUCCESS ";
-    public static final String FAILED_MESSAGE = "FAILED ";
-    public static final String HAVE_ACCESS_MESSAGE = "HAVE ACCESS";
-    public static final String NO_ACCESS_MESSAGE = "NO ACCESS";
+public enum ValidationConstants {
+    SUCCESS_MESSAGE("SUCCESS "),
+    FAILED_MESSAGE("FAILED "),
+    HAVE_ACCESS_MESSAGE("HAVE ACCESS"),
+    NO_ACCESS_MESSAGE("NO ACCESS");
+
+    private final String value;
+
+    ValidationConstants(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
