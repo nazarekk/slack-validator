@@ -16,15 +16,6 @@ public class App {
         List<String> scopes = List.of(args).subList(1, args.length);
         TokenValidationService tokenValidationService = new SlackTokenValidationService();
         ValidationResult validationResult = tokenValidationService.validateToken(token, scopes);
-        System.out.println("Validation results: ");
-        validationResult.scopeResults().forEach((scope, hasAccess) ->
-                System.out.println(scope + " - " + (hasAccess ?
-                        ValidationConstants.HAVE_ACCESS_MESSAGE.getValue() :
-                        ValidationConstants.NO_ACCESS_MESSAGE.getValue()
-                )));
-        System.out.println(validationResult.isSuccess() ?
-                ValidationConstants.SUCCESS_MESSAGE.getValue() :
-                ValidationConstants.FAILED_MESSAGE.getValue()
-        );
+        System.out.println("Validation results: \n" + validationResult.toString());
     }
 }

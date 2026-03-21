@@ -36,10 +36,10 @@ public class SlackTokenValidationServiceTest {
         TokenValidationService.ValidationResult validationResult = tokenValidationService.validateToken(
                 "xoxb-1-A1B2C3D4-E5F6G7H8-I9J0K1L2-M3N4O5P6-Q7R8S9T0",
                 Arrays.asList("channels:read", "channels:history", "groups:read"));
-        Assertions.assertFalse(validationResult.isSuccess());
-        Assertions.assertTrue(validationResult.scopeResults().get("channels:read"));
-        Assertions.assertTrue(validationResult.scopeResults().get("channels:history"));
-        Assertions.assertFalse(validationResult.scopeResults().get("groups:read"));
+        Assertions.assertFalse(validationResult.isSuccess);
+        Assertions.assertTrue(validationResult.scopeResults.get("channels:read"));
+        Assertions.assertTrue(validationResult.scopeResults.get("channels:history"));
+        Assertions.assertFalse(validationResult.scopeResults.get("groups:read"));
     }
 
     @Test
@@ -48,9 +48,9 @@ public class SlackTokenValidationServiceTest {
         TokenValidationService.ValidationResult validationResult = tokenValidationService.validateToken(
                 "xoxb-1-A1B2C3D4-E5F6G7H8-I9J0K1L2-M3N4O5P6-Q7R8S9T0",
                 Arrays.asList("channels:read", "channels:history", "groups:history"));
-        Assertions.assertTrue(validationResult.isSuccess());
-        Assertions.assertTrue(validationResult.scopeResults().get("channels:read"));
-        Assertions.assertTrue(validationResult.scopeResults().get("channels:history"));
-        Assertions.assertTrue(validationResult.scopeResults().get("groups:history"));
+        Assertions.assertTrue(validationResult.isSuccess);
+        Assertions.assertTrue(validationResult.scopeResults.get("channels:read"));
+        Assertions.assertTrue(validationResult.scopeResults.get("channels:history"));
+        Assertions.assertTrue(validationResult.scopeResults.get("groups:history"));
     }
 }

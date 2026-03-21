@@ -3,9 +3,11 @@ package org.slack.services;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import org.slack.clients.AuthClient;
 import org.slack.clients.SlackAuthClient;
+import org.slack.exceptions.SlackTokenAuthException;
 import org.slack.validators.SlackTokenValidator;
 import org.slack.validators.TokenValidator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +27,16 @@ public class SlackTokenValidationService implements TokenValidationService {
 
     @Override
     public ValidationResult validateToken(String token, List<String> scopes) {
-        AuthTestResponse response = authClient.authTest(token);
-        Map<String, Boolean> validatedScopes = tokenValidator.bulkValidate(response, scopes);
+        try {
+            AuthTestResponse response = authClient.authTest(token);
+            Map<String, Boolean> validatedScopes = tokenValidator.bulkValidate(response, scopes);
 
-        return new ValidationResult(
-                validatedScopes,
-                !validatedScopes.containsValue(false)
-        );
+            return new ValidationResult(
+                    validatedScopes,
+                    !validatedScopes.containsValue(false)
+            );
+        } catch (SlackTokenAuthException e) {
+            return new ValidationResult(Collections.emptyMap(), false);
+        }
     }
 }

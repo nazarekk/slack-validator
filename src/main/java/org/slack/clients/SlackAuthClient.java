@@ -14,7 +14,7 @@ public class SlackAuthClient implements AuthClient<AuthTestResponse> {
         this.slack = Slack.getInstance();
     }
 
-    public AuthTestResponse authTest(String token) {
+    public AuthTestResponse authTest(String token) throws SlackTokenAuthException {
         try {
             return slack.methods(token).authTest(r -> r);
         } catch (IOException | SlackApiException ie) {
